@@ -30,7 +30,6 @@ day1 :: proc() {
     file, _ := os.read_entire_file("day_1_input.txt")
     lines, _ := strings.split_lines(string(file))
     part_1, part_2, l_pos: int
-    nums := make([dynamic]string)
 
     start := time.tick_now()
     for line in lines {
@@ -160,6 +159,98 @@ day1 :: proc() {
     }
 
     p2_time := time.tick_lap_time(&start)
+
+    fmt.println("Day 1:")
+    fmt.println("   Part 1:", part_1)
+    fmt.println("       Time:", p1_time)
+    fmt.println("   Part 2:", part_2)
+    fmt.println("       Time:", p2_time)
+
+}
+
+day1_op :: proc() {
+    file, _ := os.read_entire_file("day_1_input.txt")
+    lines, _ := strings.split_lines(string(file))
+    part_1, part_2: int
+
+    start := time.tick_now()
+    for line in lines {
+        last: int
+        for c in line {
+            switch c {
+            case '1':
+                if last == 0 do part_1 += 10
+                last = 1
+            case '2':
+                if last == 0 do part_1 += 20
+                last = 2
+            case '3':
+                if last == 0 do part_1 += 30
+                last = 3
+            case '4':
+                if last == 0 do part_1 += 40
+                last = 4
+            case '5':
+                if last == 0 do part_1 += 50
+                last = 5
+            case '6':
+                if last == 0 do part_1 += 60
+                last = 6
+            case '7':
+                if last == 0 do part_1 += 70
+                last = 7
+            case '8':
+                if last == 0 do part_1 += 80
+                last = 8
+            case '9':
+                if last == 0 do part_1 += 90
+                last = 9
+            }
+        }
+        part_1 += last
+    }
+    p1_time := time.tick_since(start)
+    
+    start = time.tick_now()
+    for line in lines {
+        line_len := len(line)
+        last: int
+
+        for pos: int; pos < line_len; pos+=1 {
+            c := line[pos]
+            switch c {
+                case '1':
+                    if last == 0 do part_2 += 10
+                    last = 1
+                case '2':
+                    if last == 0 do part_2 += 20
+                    last = 2
+                case '3':
+                    if last == 0 do part_2 += 30
+                    last = 3
+                case '4':
+                    if last == 0 do part_2 += 40
+                    last = 4
+                case '5':
+                    if last == 0 do part_2 += 50
+                    last = 5
+                case '6':
+                    if last == 0 do part_2 += 60
+                    last = 6
+                case '7':
+                    if last == 0 do part_2 += 70
+                    last = 7
+                case '8':
+                    if last == 0 do part_2 += 80
+                    last = 8
+                case '9':
+                    if last == 0 do part_2 += 90
+                    last = 9
+            }
+        }
+        part_2 += last
+    }
+    p2_time := time.tick_since(start)
 
     fmt.println("Day 1:")
     fmt.println("   Part 1:", part_1)
