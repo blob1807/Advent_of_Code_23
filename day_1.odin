@@ -14,6 +14,7 @@ example :: "1abc2\n" +
 "a1b2c3d4e5f\n" +
 "treb7uchet"
 
+@(private="file")
 example_2 :: "two1nine\n" +
 "eightwothree\n" +
 "abcone2threexyz\n" +
