@@ -29,8 +29,7 @@ example_2 :: "two1nine\n" +
 day1 :: proc() {
     file, _ := os.read_entire_file("day_1_input.txt")
     lines, _ := strings.split_lines(string(file))
-    part_1, part_2, l_pos: int
-
+    p1, p2, l_pos: int
     start := time.tick_now()
     for line in lines {
         num: string
@@ -47,7 +46,7 @@ day1 :: proc() {
                 break
             }
         }
-        part_1 += strconv.atoi(num)
+        p1 += strconv.atoi(num)
     }
     p1_time := time.tick_lap_time(&start)
 
@@ -154,16 +153,16 @@ day1 :: proc() {
             }
             c_pos -= 1
         }
-        part_2 += strconv.atoi(num)
+        p2 += strconv.atoi(num)
         l_pos += 1
     }
 
     p2_time := time.tick_lap_time(&start)
 
     fmt.println("Day 1:")
-    fmt.println("   Part 1:", part_1)
+    fmt.println("   Part 1:", p1)
     fmt.println("       Time:", p1_time)
-    fmt.println("   Part 2:", part_2)
+    fmt.println("   Part 2:", p2)
     fmt.println("       Time:", p2_time)
 
 }
@@ -171,91 +170,201 @@ day1 :: proc() {
 day1_op :: proc() {
     file, _ := os.read_entire_file("day_1_input.txt")
     lines, _ := strings.split_lines(string(file))
-    part_1, part_2: int
+    p1, p2: int
 
     start := time.tick_now()
     for line in lines {
-        last: int
-        for c in line {
-            switch c {
-            case '1':
-                if last == 0 do part_1 += 10
-                last = 1
-            case '2':
-                if last == 0 do part_1 += 20
-                last = 2
-            case '3':
-                if last == 0 do part_1 += 30
-                last = 3
-            case '4':
-                if last == 0 do part_1 += 40
-                last = 4
-            case '5':
-                if last == 0 do part_1 += 50
-                last = 5
-            case '6':
-                if last == 0 do part_1 += 60
-                last = 6
-            case '7':
-                if last == 0 do part_1 += 70
-                last = 7
-            case '8':
-                if last == 0 do part_1 += 80
-                last = 8
-            case '9':
-                if last == 0 do part_1 += 90
-                last = 9
-            }
-        }
-        part_1 += last
-    }
-    p1_time := time.tick_since(start)
-    
-    start = time.tick_now()
-    for line in lines {
         line_len := len(line)
         last: int
-
         for pos: int; pos < line_len; pos+=1 {
             c := line[pos]
             switch c {
-                case '1':
-                    if last == 0 do part_2 += 10
-                    last = 1
-                case '2':
-                    if last == 0 do part_2 += 20
-                    last = 2
-                case '3':
-                    if last == 0 do part_2 += 30
-                    last = 3
-                case '4':
-                    if last == 0 do part_2 += 40
-                    last = 4
-                case '5':
-                    if last == 0 do part_2 += 50
-                    last = 5
-                case '6':
-                    if last == 0 do part_2 += 60
-                    last = 6
-                case '7':
-                    if last == 0 do part_2 += 70
-                    last = 7
-                case '8':
-                    if last == 0 do part_2 += 80
-                    last = 8
-                case '9':
-                    if last == 0 do part_2 += 90
-                    last = 9
+            case '1':
+                if last == 0 do p1 += 10
+                last = 1
+            case '2':
+                if last == 0 do p1 += 20
+                last = 2
+            case '3':
+                if last == 0 do p1 += 30
+                last = 3
+            case '4':
+                if last == 0 do p1 += 40
+                last = 4
+            case '5':
+                if last == 0 do p1 += 50
+                last = 5
+            case '6':
+                if last == 0 do p1 += 60
+                last = 6
+            case '7':
+                if last == 0 do p1 += 70
+                last = 7
+            case '8':
+                if last == 0 do p1 += 80
+                last = 8
+            case '9':
+                if last == 0 do p1 += 90
+                last = 9
             }
         }
-        part_2 += last
+        p1 += last
+    }
+    p1_time := time.tick_since(start)
+
+    start = time.tick_now()
+    for line in lines {
+        line_len := len(line)
+        l1: for pos: int; pos < line_len; pos+=1 {
+            c := line[pos]
+            switch c {
+                case '1':
+                    p2 += 10
+                    break l1
+                case '2':
+                    p2 += 20
+                    break l1
+                case '3':
+                    p2 += 30
+                    break l1
+                case '4':
+                    p2 += 40
+                    break l1
+                case '5':
+                    p2 += 50
+                    break l1
+                case '6':
+                    p2 += 60
+                    break l1
+                case '7':
+                    p2 += 70
+                    break l1
+                case '8':
+                    p2 += 80
+                    break l1
+                case '9':
+                    p2 += 90
+                    break l1
+                case 'o':
+                    if pos+3 < line_len && line[pos:pos+3] == "one" {
+                        p2 += 10
+                        break l1
+                    }
+                case 't':
+                    if pos+3 < line_len && line[pos:pos+3] == "two" {
+                        p2 += 20
+                        break l1
+                    }else if pos+5 < line_len && line[pos:pos+5] == "three" {
+                        p2 += 30
+                        break l1
+                    }
+                case 'f':
+                    if pos+4 < line_len && line[pos:pos+4] =="four" {
+                        p2 += 40
+                        break l1
+                    } else if pos+4 < line_len && line[pos:pos+4] == "five" {
+                        p2 += 50
+                        break l1
+                    }
+                case 's':
+                    if pos+3 < line_len && line[pos:pos+3] == "six" {
+                        p2 += 60
+                        break l1
+                    }else if pos+5 < line_len && line[pos:pos+5] == "seven" {
+                        p2 += 70
+                        break l1
+                    }
+                case 'e':
+                    if pos+5 < line_len && line[pos:pos+5] == "eight" {
+                        p2 += 80
+                        break l1
+                    } 
+                case 'n':
+                    if pos+4 < line_len && line[pos:pos+4] == "nine" {
+                        p2 += 90
+                        break l1
+                    } 
+            }
+        }
+
+        l2: for pos := line_len - 1; pos >= 0; pos -= 1 {
+            c := line[pos]
+            switch c {
+                case '1':
+                    p2 += 1
+                    break l2
+                case '2':
+                    p2 += 2
+                    break l2
+                case '3':
+                    p2 += 3
+                    break l2
+                case '4':
+                    p2 += 4
+                    break l2
+                case '5':
+                    p2 += 5
+                    break l2
+                case '6':
+                    p2 += 6
+                    break l2
+                case '7':
+                    p2 += 7
+                    break l2
+                case '8':
+                    p2 += 8
+                    break l2
+                case '9':
+                    p2 += 9
+                    break l2
+                case 'e':
+                    if pos-2 > -1 && line[pos-2:pos+1] == "one" {
+                        p2 += 1
+                        break l2
+                    } else if pos-3 > -1 && line[pos-3:pos+1] == "five" {
+                        p2 += 5
+                        break l2
+                    } else if pos-3 > -1 && line[pos-3:pos+1] == "nine" {
+                        p2 += 9
+                        break l2
+                    } else if pos-4 > -1 && line[pos-4:pos+1] == "three" {
+                        p2 += 3
+                        break l2
+                    }
+                case 'o':
+                    if pos-2 > -1 && line[pos-2:pos+1] == "two" {
+                        p2 += 2
+                        break l2
+                    }
+                    
+                case 'r':
+                    if pos-3 > -1 && line[pos-3:pos+1] =="four" {
+                        p2 += 4
+                        break l2
+                    }
+                case 'x':
+                    if pos-2 > -1 && line[pos-2:pos+1] == "six" {
+                        p2 += 6
+                        break l2
+                    }
+                case 'n':
+                    if pos-4 > -1 && line[pos-4:pos+1] == "seven" {
+                        p2 += 7
+                        break l2
+                    }
+                case 't':
+                    if pos-4 > -1 && line[pos-4:pos+1] == "eight" {
+                        p2 += 8
+                        break l2
+                    }
+            }
+        }
     }
     p2_time := time.tick_since(start)
-
     fmt.println("Day 1:")
-    fmt.println("   Part 1:", part_1)
+    fmt.println("   Part 1:", p1)
     fmt.println("       Time:", p1_time)
-    fmt.println("   Part 2:", part_2)
+    fmt.println("   Part 2:", p2)
     fmt.println("       Time:", p2_time)
 
 }
