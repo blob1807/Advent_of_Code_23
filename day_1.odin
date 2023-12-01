@@ -6,6 +6,7 @@ import "core:strings"
 import "core:strconv"
 import uni "core:unicode"
 import "core:unicode/utf8"
+import "core:time"
 
 
 @(private="file")
@@ -28,9 +29,10 @@ example_2 :: "two1nine\n" +
 day1 :: proc() {
     file, _ := os.read_entire_file("day_1_input.txt")
     lines, _ := strings.split_lines(string(file))
-    part_1, part_2: int
+    part_1, part_2, l_pos: int
     nums := make([dynamic]string)
 
+    start := time.tick_now()
     for line in lines {
         num: string
         for c in line {
@@ -40,7 +42,7 @@ day1 :: proc() {
             }
             
         }
-        for c in strings.reverse(line){
+        #reverse for c in line{
             if uni.is_digit(c) {
                 num = fmt.aprint(num, c, sep="")
                 break
@@ -48,8 +50,8 @@ day1 :: proc() {
         }
         part_1 += strconv.atoi(num)
     }
+    p1_time := time.tick_lap_time(&start)
 
-    l_pos: int
     for l_pos < len(lines) {
         line := utf8.string_to_runes(lines[l_pos])
         line_len := len(line)
@@ -157,8 +159,12 @@ day1 :: proc() {
         l_pos += 1
     }
 
+    p2_time := time.tick_lap_time(&start)
+
     fmt.println("Day1:")
     fmt.println("   Part 1:", part_1)
+    fmt.println("       Time:", p1_time)
     fmt.println("   Part 2:", part_2)
+    fmt.println("       Time:", p2_time)
 
 }
