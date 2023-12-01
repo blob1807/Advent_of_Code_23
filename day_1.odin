@@ -161,7 +161,7 @@ day1 :: proc() {
 
     p2_time := time.tick_lap_time(&start)
 
-    fmt.println("Day1:")
+    fmt.println("Day 1:")
     fmt.println("   Part 1:", part_1)
     fmt.println("       Time:", p1_time)
     fmt.println("   Part 2:", part_2)
