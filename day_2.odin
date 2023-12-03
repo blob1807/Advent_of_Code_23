@@ -35,7 +35,7 @@ day2 :: proc() {
     // Part 1
     start := time.tick_now()
     {
-        max_die := [colours]int{.Red=12, .Green=13, .Blue=14}
+        //max_die := [colours]int{.Red=12, .Green=13, .Blue=14}
         /*max_game: int
         {  
             temp, _ := strings.split(lines[len(lines)-1], ":")
@@ -70,7 +70,8 @@ day2 :: proc() {
                     }
                 }
             }
-            if die_count[.Blue] <= max_die[.Blue] && die_count[.Green] <= max_die[.Green] && die_count[.Red] <= max_die[.Red]{
+            //if die_count[.Blue] <= max_die[.Blue] && die_count[.Green] <= max_die[.Green] && die_count[.Red] <= max_die[.Red]{
+            if die_count[.Blue] <= 14 && die_count[.Green] <= 13 && die_count[.Red] <= 12{
                 //games[game-1] = true
                 p1 += strconv.atoi(string(temp[0][5:])) //game
             }
@@ -83,7 +84,6 @@ day2 :: proc() {
     {
         for line in lines {
             temp, _ := strings.split(line, ":")
-            // game := strconv.atoi(string(temp[0][5:]))
             sets, _ := strings.split(temp[1], ";")
             die_count := [colours]int{}
 
@@ -114,7 +114,7 @@ day2 :: proc() {
     }
     p2_time := time.tick_since(start)
 
-    fmt.println("Day 1:")
+    fmt.println("Day 2:")
     fmt.println("   Part 1:", p1)
     fmt.println("       Time:", p1_time)
     fmt.println("   Part 2:", p2)
