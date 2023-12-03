@@ -14,8 +14,8 @@ example :: ``
 @(private="file")
 example_2 :: ``
 
-@(private="file")
-file :: #load("day_3_input.txt", string)
+//@(private="file")
+//file :: #load("day_3_input.txt", string)
 
 
 day3 :: proc() {
