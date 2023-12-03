@@ -184,7 +184,8 @@ day2_op :: proc() {
     for line in lines {
         temp, _ := strings.split(line, ":")
         die_count := [colours]int{}
-        for pos, size: int; pos < len(temp[1]); pos += 1 {
+        size: int
+        for pos: int; pos < len(temp[1]); pos += 1 {
             switch temp[1][pos] {
                 case ',', ';':
                     append(&dice, temp[1][pos-size:pos])
@@ -193,6 +194,7 @@ day2_op :: proc() {
                     size += 1
             }
         }
+        append(&dice, temp[1][len(temp[1])-size:len(temp[1])])
         for die in dice {
             size: int
             for pos: int; pos < len(die); pos += 1 {
