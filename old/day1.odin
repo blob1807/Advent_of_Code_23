@@ -1,3 +1,4 @@
+package old
 for line in lines {
     line_len := len(line)
     l1: for pos: int; pos < line_len; pos+=1 {
