@@ -9,49 +9,16 @@ import "core:strings"
 
 
 @(private="file")
-example :: `seeds: 79 14 55 13
-
-seed-to-soil map:
-50 98 2
-52 50 48
-
-soil-to-fertilizer map:
-0 15 37
-37 52 2
-39 0 15
-
-fertilizer-to-water map:
-49 53 8
-0 11 42
-42 0 7
-57 7 4
-
-water-to-light map:
-88 18 7
-18 25 70
-
-light-to-temperature map:
-45 77 23
-81 45 19
-68 64 13
-
-temperature-to-humidity map:
-0 69 1
-1 0 69
-
-humidity-to-location map:
-60 56 37
-56 93 4
-`
+example :: ``
 
 @(private="file")
 example_2 :: ``
 
 @(private="file")
-file :: #load("day_5_input.txt", string)
+file :: #load("day_7_input.txt", string)
 
 
-day5 :: proc() {
+day7 :: proc() {
     lines := strings.split_lines(example)
     p1, p2: int
 
@@ -70,7 +37,7 @@ day5 :: proc() {
 
     p2_time := time.tick_since(start)
 
-    fmt.println("Day 5:")
+    fmt.println("Day 7:")
     fmt.println("   Part 1:", p1)
     fmt.println("       Time:", p1_time)
     fmt.println("   Part 2:", p2)
@@ -78,7 +45,7 @@ day5 :: proc() {
 }
 
 
-day5_op :: proc() {
+day7_op :: proc() {
     lines := strings.split_lines(example)
     p1, p2: int
 
@@ -97,7 +64,7 @@ day5_op :: proc() {
 
     p2_time := time.tick_since(start)
 
-    fmt.println("Day 5:")
+    fmt.println("Day 7:")
     fmt.println("   Part 1:", p1)
     fmt.println("       Time:", p1_time)
     fmt.println("   Part 2:", p2)
